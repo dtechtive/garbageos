@@ -1,7 +1,23 @@
 print("Welcome to GarbageOS!")
-
+from getpass import getpass
 import os
-
+f = open("./sys/startAsSetup").read()
+if f == "1" :
+    os.system('python setup/setup.py')
+print("Please login.")
+user = input("Type username: ")
+passw = getpass("Type password: ")
+f_user = open("./sys/user").read()
+f_passw = open("./sys/pass").read()
+if user == f_user :
+    if passw == f_passw :
+        print("Welcome,", user,"!")
+    else:
+        print("Username or password incorrect.")
+        os.system("python garbageOS.py")
+else:
+    print("Username or password incorrect.")
+    os.system("python garbageOS.py")
 while True:
     cmd = input("Type help for a list of commands. > ")
     if cmd == "help" :
